@@ -1,0 +1,4 @@
+trino>=0.328.0
+requests>=2.25.0
+mcp>=1.0.0
+snowflake-connector-python>=3.0.0 
