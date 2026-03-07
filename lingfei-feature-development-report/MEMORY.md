@@ -14,13 +14,8 @@
 - **Last Active:** 2026-03-07
 
 ### Diglett Backend
-- **Goal:** Build the Diglett backend on Pedregal - graph scaffolding with GenAI, Snowflake, S3, and Taulu integrations
-- **Repos:** doordash/pedregal
-- **Last Active:** 2026-03-07
-
-### Diglett Infra
-- **Goal:** Infrastructure and service registration for Diglett - Vault, staging environments
-- **Repos:** doordash/tf_account_dash_management
+- **Goal:** Build the Diglett backend - Pedregal graph scaffolding, infra, Vault, GenAI, Snowflake, S3, and Taulu integrations
+- **Repos:** doordash/pedregal, doordash/tf_account_dash_management
 - **Last Active:** 2026-03-07
 
 ### Developer Workflow (Playground)
@@ -41,8 +36,6 @@
 
 ### Diglett Backend
 - **doordash/pedregal#105075** - Diglett graph scaffold v2 - CI PENDING (buildkite running), review required, +850/-0, 23 files
-
-### Diglett Infra
 - **doordash/tf_account_dash_management#2039** - Vault registration for diglett staging - CI all green, APPROVED, ready to merge, +16/-0
 
 ### Developer Workflow (Playground)
@@ -86,9 +79,6 @@
 | ID | Feature | Status | PR | Notes | Added |
 |----|---------|--------|----|-------|-------|
 | BL-2 | Update Diglett Taulu schema to match AskDataAI | BACKLOG | - | Align Taulu schema with existing askdataai implementation | 2026-03-07 |
-
-### Diglett Infra
-_No backlog items_
 
 ### Developer Workflow (Playground)
 _No backlog items_
