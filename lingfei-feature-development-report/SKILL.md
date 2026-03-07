@@ -91,6 +91,24 @@ When the user describes a new feature idea outside of a report run:
 3. On confirmation, assign the next available BL-N ID and add it to MEMORY.md
 4. Commit via branch + PR (same workflow as report updates)
 
+### Step 7c: Auto-create backlog items for unlinked open PRs
+
+After updating existing backlog statuses in Step 7b, check for open PRs that have no corresponding backlog item. An open PR is "unlinked" if:
+1. It is NOT already referenced by any backlog item (neither as an IN PROGRESS link nor as a DONE link)
+2. It is NOT a playground report/meta PR (skip PRs in the `dd-lingfei/playground` repo since those are tooling PRs for this report itself)
+
+For each unlinked open PR:
+1. Assign the next available BL-N ID (scan all workstreams for the highest existing ID and increment)
+2. Derive the feature title from the PR title - clean it up to be a concise feature description (e.g. "Add Diglett session management with store ID entry and photo persistence" -> "Session management with store ID entry and photo persistence")
+3. Set status to `IN PROGRESS` and link the PR
+4. Set Notes to a brief description derived from the PR title
+5. Set Added to today's date
+6. Place it under the correct workstream based on the PR's repo (same classification as Step 7)
+
+Report any auto-created backlog items in the Action Items section (e.g. "Auto-created BL-9 for ios#66161 (session management)").
+
+IMPORTANT: This runs automatically during every report run. No user confirmation is needed for auto-created items since the PR already exists as evidence of the work. The user can always rename or reorganize backlog items later.
+
 ### Step 8: Present the report
 
 For each workstream, present in this format:
