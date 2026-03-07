@@ -72,6 +72,25 @@
 - **doordash/inventory-skills#32** - Add AI-first authorship policy - MERGED
 - **doordash/inventory-skills#30** - Update AGENT.md for telescope/microscope - MERGED
 
+## Backlog
+
+### Diglett iOS App
+| ID | Feature | Status | PR | Notes | Added |
+|----|---------|--------|----|-------|-------|
+| BL-1 | Barcode detection for photo quality validation | BACKLOG | - | Auto-detect barcodes in captured photo. 1 barcode = green confirm. 0 or 2+ barcodes = show warning + change button to "Still Confirm" | 2026-03-07 |
+
+### Diglett Backend
+_No backlog items_
+
+### Diglett Infra
+_No backlog items_
+
+### Developer Workflow (Playground)
+_No backlog items_
+
+### Inventory Skills
+_No backlog items_
+
 ## Skill Location
 - Skill installed at: `~/.claude/skills/lingfei-feature-development-report/SKILL.md`
 - Invoke with: `/lingfei-feature-development-report`
