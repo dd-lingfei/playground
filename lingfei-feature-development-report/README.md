@@ -55,6 +55,7 @@ _Last updated: 2026-03-07_
 |----|---------|--------|----|-------|-------|
 | BL-2 | Update Diglett Taulu schema to match AskDataAI | **IN PROGRESS** | [#105075](https://github.com/doordash/pedregal/pull/105075) | Taulu schema updated to match ask-diglett tools.py response | 2026-03-07 |
 | BL-6 | Diglett local KV store for development | **IN PROGRESS** | - | In-memory KV store simulating Taulu for local dev (branch: feature/diglett-local-store) | 2026-03-07 |
+| BL-8 | Async job processing pipeline | BACKLOG | - | After job creation, kick off async process: 1) query Snowflake, 2) query PortKey GenAI, 3) update Taulu. Start with placeholder logic, get async framework running in Pedregal. | 2026-03-07 |
 
 ---
 
