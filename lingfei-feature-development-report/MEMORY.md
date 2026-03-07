@@ -78,9 +78,13 @@
 | ID | Feature | Status | PR | Notes | Added |
 |----|---------|--------|----|-------|-------|
 | BL-1 | Barcode detection for photo quality validation | BACKLOG | - | Auto-detect barcodes in captured photo. 1 barcode = green confirm. 0 or 2+ barcodes = show warning + change button to "Still Confirm" | 2026-03-07 |
+| BL-3 | Trigger backend processing after photo upload + poll for status | BACKLOG | - | After successful upload, call Diglett backend to start processing job. Poll status endpoint until complete. On success: log response to debug console + update row text to "Processing completed." | 2026-03-07 |
+| BL-4 | Use local backend endpoint in simulator | BACKLOG | - | When running in simulator, hit local Diglett backend instead of pedregal endpoint | 2026-03-07 |
 
 ### Diglett Backend
-_No backlog items_
+| ID | Feature | Status | PR | Notes | Added |
+|----|---------|--------|----|-------|-------|
+| BL-2 | Update Diglett Taulu schema to match AskDataAI | BACKLOG | - | Align Taulu schema with existing askdataai implementation | 2026-03-07 |
 
 ### Diglett Infra
 _No backlog items_
