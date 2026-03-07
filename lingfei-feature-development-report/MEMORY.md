@@ -1,7 +1,7 @@
 # Local Memory - dd-lingfei Feature Development Report
 
 ## Last Updated
-2026-03-07 (evening run)
+2026-03-07 (late evening run)
 
 ## GitHub Profile
 - **Username:** dd-lingfei
@@ -33,17 +33,17 @@
 - **Repos:** doordash/inventory-skills
 - **Last Active:** 2026-02-27
 
-## Open PR Summary (as of 2026-03-07 evening)
+## Open PR Summary (as of 2026-03-07 late evening)
 
 ### Diglett iOS App
-- **doordash/ios#66162** - Sequential photo IDs - CI passing (pullapprove pending), no review yet
-- **doordash/ios#66161** - Session management + store ID entry - CI passing (pullapprove pending), no review yet
+- **doordash/ios#66162** - Sequential photo IDs - CI passing (pullapprove pending), no review yet, +13/-1
+- **doordash/ios#66161** - Session management + store ID entry - CI passing (pullapprove pending), no review yet, +374/-52
 
 ### Diglett Backend
-- **doordash/pedregal#105075** - Diglett graph scaffold v2 - CI FAILING (nodes dir structure check error), review required
+- **doordash/pedregal#105075** - Diglett graph scaffold v2 - CI PENDING (buildkite running), review required, +850/-0, 23 files
 
 ### Diglett Infra
-- **doordash/tf_account_dash_management#2039** - Vault registration for diglett staging - CI all green, APPROVED, ready to merge
+- **doordash/tf_account_dash_management#2039** - Vault registration for diglett staging - CI all green, APPROVED, ready to merge, +16/-0
 
 ### Developer Workflow (Playground)
 - No open PRs
@@ -52,9 +52,9 @@
 - No open PRs
 
 ## Action Items
-- PR #105075 (pedregal) has a FAILING CI check (Nodes directory structure check: ERROR) - needs fix
-- PR #2039 (tf_account_dash_management) is approved and all checks passing - ready to merge
-- PRs #66161 and #66162 (ios) are waiting on pullapprove and code review
+- PR #2039 (tf_account_dash_management) is approved and all checks passing - MERGE NOW
+- PR #105075 (pedregal) has buildkite CI still running - monitor for completion (v1 PR #105035 failed CI previously)
+- PRs #66161 and #66162 (ios) need code review - pullapprove pending, all other CI checks passing
 - Developer Workflow workstream is STALE - last activity was playground#2 (merged 2026-03-07)
 - Inventory Skills workstream is STALE - last activity was 2026-02-27
 
