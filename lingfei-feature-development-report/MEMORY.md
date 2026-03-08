@@ -1,7 +1,7 @@
 # Local Memory - dd-lingfei Feature Development Report
 
 ## Last Updated
-2026-03-07 (final v2 run)
+2026-03-08 (evening run)
 
 ## GitHub Profile
 - **Username:** dd-lingfei
@@ -11,48 +11,62 @@
 ### Diglett iOS App
 - **Goal:** Build the Diglett iOS app - photo capture, session management, store ID entry, and item comparison views
 - **Repos:** doordash/ios
-- **Last Active:** 2026-03-07
+- **Last Active:** 2026-03-08
 
 ### Diglett Backend
 - **Goal:** Build the Diglett backend - Pedregal graph scaffolding, infra, Vault, GenAI, Snowflake, S3, and Taulu integrations
 - **Repos:** doordash/pedregal, doordash/tf_account_dash_management
-- **Last Active:** 2026-03-07
+- **Last Active:** 2026-03-08
 
 ### Developer Workflow (Playground)
 - **Goal:** Improve personal developer workflow with skills, PR tracking, and automation tooling
 - **Repos:** dd-lingfei/playground
-- **Last Active:** 2026-03-07
+- **Last Active:** 2026-03-08
 
 ### Inventory Skills
 - **Goal:** Build and maintain inventory investigation skills (telescope, microscope, weather-report)
 - **Repos:** doordash/inventory-skills
 - **Last Active:** 2026-02-27
 
-## Open PR Summary (as of 2026-03-07 final v2)
+## Open PR Summary (as of 2026-03-08 evening)
 
 ### Diglett iOS App
-- **doordash/ios#66194** - Barcode guardrail for photo review - CI passing (pullapprove pending), no review yet, +121/-7
-- **doordash/ios#66162** - Sequential photo IDs - CI passing (pullapprove pending), no review yet, +13/-1
-- **doordash/ios#66161** - Session management + store ID entry - CI passing (pullapprove pending), no review yet, +374/-52
+- **doordash/ios#66194** - Barcode guardrail for photo review - CI PASSING (all green), APPROVED, ready to merge, +219/-18
+- **doordash/ios#66162** - Sequential photo IDs - CI passing (pullapprove only pending), no review yet, +13/-1
+- **doordash/ios#66161** - Session management + store ID entry - CI passing (pullapprove only pending), no review yet, +374/-52
 
 ### Diglett Backend
-- **doordash/pedregal#105075** - Diglett graph scaffold v2 - CI PASSING (all green), review required, +850/-0, 23 files
+- **doordash/pedregal#105109** - Async job processor for Diglett pipeline - CI passing (aviator pending), no review yet, +429/-320, 8 files
+- **doordash/pedregal#105075** - Diglett graph scaffold v2 - CI passing (aviator pending), review required, +1389/-0, 26 files
 - **doordash/tf_account_dash_management#2039** - Vault registration for diglett staging - CI all green, APPROVED, ready to merge, +16/-0
 
 ### Developer Workflow (Playground)
-- No open PRs (closed stale report PRs #5, #9, #11)
+- No open PRs (closed stale report PR #22)
 
 ### Inventory Skills
 - No open PRs
 
 ## Action Items
+- PR #66194 (ios) barcode guardrail is APPROVED and all CI passing - MERGE NOW
 - PR #2039 (tf_account_dash_management) is approved and all checks passing - MERGE NOW
-- PR #105075 (pedregal) CI is all green - needs reviewer
-- PRs #66161, #66162, and #66194 (ios) need code review - all real CI passing, only pullapprove pending
-- BL-1 (Barcode detection) is IN PROGRESS via ios#66194 - CI all green
+- PR #105075 (pedregal) CI all green (aviator pending) - needs reviewer (+1389/-0, 26 files)
+- PR #105109 (pedregal) async job processor - CI passing (aviator pending), needs reviewer
+- PRs #66161 and #66162 (ios) need code review - all real CI passing, only pullapprove pending
 - Inventory Skills workstream is STALE - last activity was 2026-02-27
 
 ## Recently Closed/Merged PRs
+- **dd-lingfei/playground#22** - Update feature development report - 2026-03-08 - CLOSED (superseded)
+- **dd-lingfei/playground#21** - Update feature development report - auto-detect backlog from PRs - CLOSED (superseded)
+- **dd-lingfei/playground#20** - Add auto-detect backlog items from unlinked open PRs - MERGED
+- **dd-lingfei/playground#19** - Update feature development report - 2026-03-07 post-BL8 - CLOSED (superseded)
+- **dd-lingfei/playground#18** - Add backlog BL-8: async job processing pipeline - CLOSED (superseded)
+- **dd-lingfei/playground#17** - Update feature development report - 2026-03-07 end of day - CLOSED (superseded)
+- **doordash/pedregal#105103** - Add in-memory job store for local development - MERGED
+- **dd-lingfei/playground#16** - Check in SKILL.md for feature development report - MERGED
+- **dd-lingfei/playground#15** - Add README.md report for feature development tracking - MERGED
+- **dd-lingfei/playground#14** - Add backlog BL-7: detect QR codes in addition to barcodes - MERGED
+- **dd-lingfei/playground#13** - Add BL-6 (local KV store) to backlog, move BL-2 to IN PROGRESS - MERGED
+- **dd-lingfei/playground#12** - Update feature development report - 2026-03-07 v2 - MERGED
 - **dd-lingfei/playground#11** - Update feature development report - 2026-03-07 final - CLOSED (stale)
 - **dd-lingfei/playground#10** - Merge Diglett Infra workstream into Diglett Backend - MERGED
 - **dd-lingfei/playground#9** - Update feature development report - 2026-03-07 late night - CLOSED (stale)
@@ -80,17 +94,21 @@
 ### Diglett iOS App
 | ID | Feature | Status | PR | Notes | Added |
 |----|---------|--------|----|-------|-------|
-| BL-1 | Barcode detection for photo quality validation | IN PROGRESS | #66194 | Auto-detect barcodes in captured photo. 1 barcode = green confirm. 0 or 2+ barcodes = show warning + change button to "Still Confirm" | 2026-03-07 |
+| BL-1 | Barcode detection for photo quality validation | IN PROGRESS | #66194 | Auto-detect barcodes in captured photo. 1 barcode = green confirm. 0 or 2+ barcodes = show warning + change button to "Still Confirm". APPROVED - ready to merge | 2026-03-07 |
 | BL-3 | Trigger backend processing after photo upload + poll for status | BACKLOG | - | After successful upload, call Diglett backend to start processing job. Poll status endpoint until complete. On success: log response to debug console + update row text to "Processing completed." | 2026-03-07 |
 | BL-4 | Use local backend endpoint in simulator | BACKLOG | - | When running in simulator, hit local Diglett backend instead of pedregal endpoint | 2026-03-07 |
 | BL-5 | Delete photos from list view | BACKLOG | - | Allow user to delete individual photos from the current session in the list view | 2026-03-07 |
 | BL-7 | Detect QR codes in addition to barcodes | BACKLOG | - | Extend the barcode guardrail to also detect QR codes for photo quality validation | 2026-03-07 |
+| BL-9 | Sequential photo IDs for Diglett captures | IN PROGRESS | #66162 | Use sequential photo IDs instead of random | 2026-03-07 |
+| BL-10 | Session management with store ID entry and photo persistence | IN PROGRESS | #66161 | Session management, store ID entry, and photo persistence | 2026-03-07 |
 
 ### Diglett Backend
 | ID | Feature | Status | PR | Notes | Added |
 |----|---------|--------|----|-------|-------|
 | BL-2 | Update Diglett Taulu schema to match AskDataAI | IN PROGRESS | #105075 | Taulu schema updated to match ask-diglett tools.py response (committed 2026-03-07) | 2026-03-07 |
-| BL-6 | Diglett local KV store for development | IN PROGRESS | - | Branch: feature/diglett-local-store. In-memory KV store simulating Taulu so StartDiglettJob persists results and GetDiglettJobResult retrieves them locally | 2026-03-07 |
+| BL-6 | Diglett local KV store for development | DONE | #105103 | In-memory KV store simulating Taulu - pedregal#105103 merged 2026-03-07 | 2026-03-07 |
+| BL-8 | Async job processing pipeline | IN PROGRESS | #105109 | After job creation, kick off async process: 1) query Snowflake table, 2) query PortKey GenAI, 3) update Taulu database | 2026-03-07 |
+| BL-11 | Register diglett staging service with Vault | IN PROGRESS | #2039 | Vault registration for diglett staging. APPROVED - ready to merge | 2026-03-07 |
 
 ### Developer Workflow (Playground)
 _No backlog items_
