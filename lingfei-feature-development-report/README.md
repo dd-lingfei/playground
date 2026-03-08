@@ -63,6 +63,7 @@ _Last updated: 2026-03-08 (evening run)_
 | BL-6 | Diglett local KV store for development | **DONE** | [#105103](https://github.com/doordash/pedregal/pull/105103) | In-memory KV store simulating Taulu - MERGED | 2026-03-07 |
 | BL-8 | Async job processing pipeline | **IN PROGRESS** | [#105109](https://github.com/doordash/pedregal/pull/105109) | After job creation, kick off async process: Snowflake, PortKey GenAI, Taulu | 2026-03-07 |
 | BL-11 | Register diglett staging service with Vault | **IN PROGRESS** | [#2039](https://github.com/doordash/tf_account_dash_management/pull/2039) | Vault registration for diglett staging. **APPROVED - ready to merge** | 2026-03-07 |
+| BL-12 | Expose Pedregal graph via Unified Gateway (UG) | BACKLOG | - | Expose the Diglett Pedregal graph endpoints through Unified Gateway | 2026-03-08 |
 
 ---
 
