@@ -109,6 +109,7 @@
 | BL-6 | Diglett local KV store for development | DONE | #105103 | In-memory KV store simulating Taulu - pedregal#105103 merged 2026-03-07 | 2026-03-07 |
 | BL-8 | Async job processing pipeline | IN PROGRESS | #105109 | After job creation, kick off async process: 1) query Snowflake table, 2) query PortKey GenAI, 3) update Taulu database | 2026-03-07 |
 | BL-11 | Register diglett staging service with Vault | IN PROGRESS | #2039 | Vault registration for diglett staging. APPROVED - ready to merge | 2026-03-07 |
+| BL-12 | Expose Pedregal graph via Unified Gateway (UG) | BACKLOG | - | Expose the Diglett Pedregal graph endpoints through Unified Gateway | 2026-03-08 |
 
 ### Developer Workflow (Playground)
 _No backlog items_
