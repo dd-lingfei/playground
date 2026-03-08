@@ -33,6 +33,8 @@ _Last updated: 2026-03-08 (evening run)_
 | BL-7 | Detect QR codes in addition to barcodes | BACKLOG | - | Extend barcode guardrail to also detect QR codes for photo quality validation | 2026-03-07 |
 | BL-9 | Sequential photo IDs for Diglett captures | **IN PROGRESS** | [#66162](https://github.com/doordash/ios/pull/66162) | Use sequential photo IDs instead of random | 2026-03-07 |
 | BL-10 | Session management with store ID entry and photo persistence | **IN PROGRESS** | [#66161](https://github.com/doordash/ios/pull/66161) | Session management, store ID entry, and photo persistence | 2026-03-07 |
+| BL-13 | Connect Dasher iOS app to local backend for end-to-end testing | BACKLOG | - | Hit local running Diglett backend instance from the iOS app for E2E testing | 2026-03-08 |
+| BL-14 | Connect iOS app to backend via Unified Gateway (UG) | BACKLOG | - | Route iOS app requests to Diglett backend through UG in non-local environments | 2026-03-08 |
 
 ---
 
