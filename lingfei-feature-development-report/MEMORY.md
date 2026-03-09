@@ -1,7 +1,7 @@
 # Local Memory - dd-lingfei Feature Development Report
 
 ## Last Updated
-2026-03-08 (late night run)
+2026-03-09 (morning run)
 
 ## GitHub Profile
 - **Username:** dd-lingfei
@@ -11,36 +11,36 @@
 ### Diglett iOS App
 - **Goal:** Build the Diglett iOS app - photo capture, session management, store ID entry, and item comparison views
 - **Repos:** doordash/ios
-- **Last Active:** 2026-03-08
+- **Last Active:** 2026-03-09
 
 ### Diglett Backend
 - **Goal:** Build the Diglett backend - Pedregal graph scaffolding, infra, Vault, GenAI, Snowflake, S3, and Taulu integrations
 - **Repos:** doordash/pedregal, doordash/tf_account_dash_management
-- **Last Active:** 2026-03-08
+- **Last Active:** 2026-03-09
 
 ### Developer Workflow (Playground)
 - **Goal:** Improve personal developer workflow with skills, PR tracking, and automation tooling
 - **Repos:** dd-lingfei/playground
-- **Last Active:** 2026-03-08
+- **Last Active:** 2026-03-09
 
 ### Inventory Skills
 - **Goal:** Build and maintain inventory investigation skills (telescope, microscope, weather-report)
 - **Repos:** doordash/inventory-skills
 - **Last Active:** 2026-02-27
 
-## Open PR Summary (as of 2026-03-08 late night)
+## Open PR Summary (as of 2026-03-09 morning)
 
 ### Diglett iOS App
-- **doordash/ios#66259** - Invoke Diglett gRPC backend for photo processing - CI PENDING (bitrise running), no review yet, +1361/-41, 7 files
-- **doordash/ios#66194** - Barcode guardrail for photo review - CI PASSING (all green), APPROVED, ready to merge, +219/-18
-- **doordash/ios#66162** - Sequential photo IDs - CI passing (pullapprove only pending), no review yet, +13/-1
-- **doordash/ios#66161** - Session management + store ID entry - CI passing (pullapprove only pending), no review yet, +374/-52
+- **doordash/ios#66194** - Barcode guardrail for photo review - CI PASSING (all green), APPROVED, ready to merge, +219/-18, 2 files
+- **doordash/ios#66259** - Invoke Diglett gRPC backend for photo processing - CI PASSING (all green), no review yet, +1425/-41, 7 files
+- **doordash/ios#66162** - Sequential photo IDs - CI passing (pullapprove only pending), no review yet, +13/-1, 2 files
+- **doordash/ios#66161** - Session management + store ID entry - CI passing (pullapprove only pending), no review yet, +374/-52, 6 files
 
 ### Diglett Backend
+- **doordash/tf_account_dash_management#2039** - Vault registration for diglett staging - CI all green, APPROVED, ready to merge, +16/-0, 2 files
 - **doordash/pedregal#105244** - Catalog store with S3 cache and enrich Diglett Get API - CI PASSING (all green), no review yet, +1481/-43, 12 files
 - **doordash/pedregal#105109** - Async job processor for Diglett pipeline - CI PASSING (all green), no review yet, +487/-350, 8 files
 - **doordash/pedregal#105075** - Diglett graph scaffold v2 - CI passing (aviator pending), review required, +1389/-0, 26 files
-- **doordash/tf_account_dash_management#2039** - Vault registration for diglett staging - CI all green, APPROVED, ready to merge, +16/-0
 
 ### Developer Workflow (Playground)
 - No open PRs
@@ -51,14 +51,16 @@
 ## Action Items
 - PR #66194 (ios) barcode guardrail is APPROVED and all CI passing - MERGE NOW
 - PR #2039 (tf_account_dash_management) is approved and all checks passing - MERGE NOW
-- PR #66259 (ios) gRPC backend invocation - CI running, needs review when CI completes
+- PR #66259 (ios) gRPC backend invocation - CI now all PASSING, needs code review (+1425/-41, 7 files)
 - PR #105244 (pedregal) catalog store + S3 cache - CI all green, needs reviewer (+1481/-43, 12 files)
-- PR #105109 (pedregal) async job processor - CI passing, needs reviewer
+- PR #105109 (pedregal) async job processor - CI passing, needs reviewer (+487/-350, 8 files)
 - PR #105075 (pedregal) CI all green (aviator pending) - needs reviewer (+1389/-0, 26 files)
 - PRs #66161 and #66162 (ios) need code review - all real CI passing, only pullapprove pending
 - Inventory Skills workstream is STALE - last activity was 2026-02-27
 
 ## Recently Closed/Merged PRs
+- **dd-lingfei/playground#27** - Update BL-4: connect with production UG endpoint - MERGED 2026-03-09
+- **dd-lingfei/playground#26** - Update feature development report - 2026-03-08 late night - MERGED 2026-03-09
 - **dd-lingfei/playground#25** - Add backlog BL-13 and BL-14: iOS local backend E2E and UG connection - MERGED 2026-03-08
 - **dd-lingfei/playground#24** - Add backlog BL-12: expose Pedregal graph via Unified Gateway - MERGED 2026-03-08
 - **dd-lingfei/playground#23** - Update feature development report - 2026-03-08 evening - MERGED
@@ -102,7 +104,7 @@
 | ID | Feature | Status | PR | Notes | Added |
 |----|---------|--------|----|-------|-------|
 | BL-1 | Barcode detection for photo quality validation | IN PROGRESS | #66194 | APPROVED - ready to merge | 2026-03-07 |
-| BL-3 | Trigger backend processing after photo upload + poll for status | IN PROGRESS | #66259 | Matched via ios#66259 (gRPC backend invocation) | 2026-03-07 |
+| BL-3 | Trigger backend processing after photo upload + poll for status | IN PROGRESS | #66259 | CI now all passing, needs code review | 2026-03-07 |
 | BL-4 | Connect with the production UG endpoint for backend processing | BACKLOG | - | Connect iOS app to production Unified Gateway endpoint for backend processing | 2026-03-07 |
 | BL-5 | Delete photos from list view | BACKLOG | - | Allow user to delete individual photos from the current session in the list view | 2026-03-07 |
 | BL-7 | Detect QR codes in addition to barcodes | BACKLOG | - | Extend the barcode guardrail to also detect QR codes for photo quality validation | 2026-03-07 |
@@ -120,7 +122,7 @@
 | BL-8 | Async job processing pipeline | IN PROGRESS | #105109 | After job creation, kick off async process: 1) query Snowflake table, 2) query PortKey GenAI, 3) update Taulu database | 2026-03-07 |
 | BL-11 | Register diglett staging service with Vault | IN PROGRESS | #2039 | Vault registration for diglett staging. APPROVED - ready to merge | 2026-03-07 |
 | BL-12 | Expose Pedregal graph via Unified Gateway (UG) | BACKLOG | - | Expose the Diglett Pedregal graph endpoints through Unified Gateway | 2026-03-08 |
-| BL-15 | Catalog retrieval and S3-based cache system | IN PROGRESS | #105244 | Matched via pedregal#105244 (catalog store + S3 cache) | 2026-03-08 |
+| BL-15 | Catalog retrieval and S3-based cache system | IN PROGRESS | #105244 | Catalog store + S3 cache, CI all green, needs reviewer | 2026-03-08 |
 | BL-16 | PortKey / GenAI integration | BACKLOG | - | Backend support for calling PortKey / GenAI services | 2026-03-08 |
 | BL-17 | Item-catalog matching | BACKLOG | - | Backend support for matching captured items against catalog data | 2026-03-08 |
 

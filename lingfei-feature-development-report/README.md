@@ -1,20 +1,20 @@
 # Feature Development Report
-_Last updated: 2026-03-08 (late night run)_
+_Last updated: 2026-03-09 (morning run)_
 
 ---
 
 ## Diglett iOS App
 **Goal:** Build the Diglett iOS app - photo capture, session management, store ID entry, and item comparison views
 **Repos:** doordash/ios
-**Status:** ACTIVE - 4 open PRs, 1 approved and ready to merge, 1 new PR with CI running
+**Status:** ACTIVE - 4 open PRs, 1 approved and ready to merge
 
 ### Open PRs
 | # | Repo | Title | CI | Review | Mergeable | +/- | Updated |
 |---|------|-------|----|--------|-----------|-----|---------|
-| [#66259](https://github.com/doordash/ios/pull/66259) | ios | Invoke Diglett gRPC backend for photo processing | PENDING (bitrise running) | PENDING | YES | +1361/-41 | 2026-03-08 |
-| [#66194](https://github.com/doordash/ios/pull/66194) | ios | Add barcode detection guardrail to Diglett photo review | PASSING | APPROVED | YES | +219/-18 | 2026-03-08 |
-| [#66162](https://github.com/doordash/ios/pull/66162) | ios | Use sequential photo IDs for Diglett captures | PASSING (pullapprove only pending) | PENDING | YES | +13/-1 | 2026-03-07 |
-| [#66161](https://github.com/doordash/ios/pull/66161) | ios | Add Diglett session management with store ID entry and photo persistence | PASSING (pullapprove only pending) | PENDING | YES | +374/-52 | 2026-03-07 |
+| [#66194](https://github.com/doordash/ios/pull/66194) | ios | Add barcode detection guardrail to Diglett photo review | PASSING | APPROVED | YES | +219/-18 | ~8 hrs ago |
+| [#66259](https://github.com/doordash/ios/pull/66259) | ios | Invoke Diglett gRPC backend for photo processing | PASSING | PENDING | YES | +1425/-41 | just now |
+| [#66162](https://github.com/doordash/ios/pull/66162) | ios | Use sequential photo IDs for Diglett captures | PASSING | PENDING | YES | +13/-1 | ~1 day ago |
+| [#66161](https://github.com/doordash/ios/pull/66161) | ios | Add Diglett session management with store ID entry and photo persistence | PASSING | PENDING | UNKNOWN | +374/-52 | ~2 days ago |
 
 ### Recently Closed/Merged
 | # | Repo | Title | State | Updated |
@@ -28,7 +28,7 @@ _Last updated: 2026-03-08 (late night run)_
 | ID | Feature | Status | PR | Notes | Added |
 |----|---------|--------|----|-------|-------|
 | BL-1 | Barcode detection for photo quality validation | **IN PROGRESS** | [#66194](https://github.com/doordash/ios/pull/66194) | APPROVED - ready to merge | 2026-03-07 |
-| BL-3 | Trigger backend processing after photo upload + poll for status | **IN PROGRESS** | [#66259](https://github.com/doordash/ios/pull/66259) | Matched via ios#66259 (gRPC backend invocation). CI running. | 2026-03-07 |
+| BL-3 | Trigger backend processing after photo upload + poll for status | **IN PROGRESS** | [#66259](https://github.com/doordash/ios/pull/66259) | CI now all passing, needs code review | 2026-03-07 |
 | BL-4 | Connect with the production UG endpoint for backend processing | BACKLOG | - | Connect iOS app to production Unified Gateway endpoint for backend processing | 2026-03-07 |
 | BL-5 | Delete photos from list view | BACKLOG | - | Allow user to delete individual photos from current session | 2026-03-07 |
 | BL-7 | Detect QR codes in addition to barcodes | BACKLOG | - | Extend barcode guardrail to also detect QR codes | 2026-03-07 |
@@ -43,15 +43,15 @@ _Last updated: 2026-03-08 (late night run)_
 ## Diglett Backend
 **Goal:** Build the Diglett backend - Pedregal graph scaffolding, infra, Vault, GenAI, Snowflake, S3, and Taulu integrations
 **Repos:** doordash/pedregal, doordash/tf_account_dash_management
-**Status:** ACTIVE - 4 open PRs, 1 approved and ready to merge, 1 new PR with all CI passing
+**Status:** ACTIVE - 4 open PRs, 1 approved and ready to merge
 
 ### Open PRs
 | # | Repo | Title | CI | Review | Mergeable | +/- | Updated |
 |---|------|-------|----|--------|-----------|-----|---------|
-| [#105244](https://github.com/doordash/pedregal/pull/105244) | pedregal | Add catalog store with S3 cache and enrich Diglett Get API | PASSING | PENDING | YES | +1481/-43 | 2026-03-08 |
-| [#105109](https://github.com/doordash/pedregal/pull/105109) | pedregal | Add async job processor for Diglett pipeline | PASSING | PENDING | YES | +487/-350 | 2026-03-08 |
-| [#105075](https://github.com/doordash/pedregal/pull/105075) | pedregal | Scaffold Diglett graph with GenAI, Snowflake, and Taulu | PENDING (aviator) | REVIEW_REQUIRED | UNKNOWN | +1389/-0 | 2026-03-07 |
-| [#2039](https://github.com/doordash/tf_account_dash_management/pull/2039) | tf_account_dash_management | Register diglett staging service with Vault | PASSING | APPROVED | YES | +16/-0 | 2026-03-07 |
+| [#2039](https://github.com/doordash/tf_account_dash_management/pull/2039) | tf_account_dash_management | Register diglett staging service with Vault | PASSING | APPROVED | YES | +16/-0 | ~2 days ago |
+| [#105244](https://github.com/doordash/pedregal/pull/105244) | pedregal | Add catalog store with S3 cache and enrich Diglett Get API | PASSING | PENDING | YES | +1481/-43 | ~3 hrs ago |
+| [#105109](https://github.com/doordash/pedregal/pull/105109) | pedregal | Add async job processor for Diglett pipeline | PASSING | PENDING | YES | +487/-350 | just now |
+| [#105075](https://github.com/doordash/pedregal/pull/105075) | pedregal | Scaffold Diglett graph with GenAI, Snowflake, and Taulu | PENDING (aviator) | REVIEW_REQUIRED | UNKNOWN | +1389/-0 | ~1 day ago |
 
 ### Recently Closed/Merged
 | # | Repo | Title | State | Updated |
@@ -67,7 +67,7 @@ _Last updated: 2026-03-08 (late night run)_
 | BL-8 | Async job processing pipeline | **IN PROGRESS** | [#105109](https://github.com/doordash/pedregal/pull/105109) | CI passing, needs reviewer | 2026-03-07 |
 | BL-11 | Register diglett staging service with Vault | **IN PROGRESS** | [#2039](https://github.com/doordash/tf_account_dash_management/pull/2039) | APPROVED - ready to merge | 2026-03-07 |
 | BL-12 | Expose Pedregal graph via Unified Gateway (UG) | BACKLOG | - | Expose Diglett endpoints through Unified Gateway | 2026-03-08 |
-| BL-15 | Catalog retrieval and S3-based cache system | **IN PROGRESS** | [#105244](https://github.com/doordash/pedregal/pull/105244) | Matched via pedregal#105244 (catalog store + S3 cache). CI all green. | 2026-03-08 |
+| BL-15 | Catalog retrieval and S3-based cache system | **IN PROGRESS** | [#105244](https://github.com/doordash/pedregal/pull/105244) | CI all green, needs reviewer (+1481/-43, 12 files) | 2026-03-08 |
 | BL-16 | PortKey / GenAI integration | BACKLOG | - | Backend support for calling PortKey / GenAI services | 2026-03-08 |
 | BL-17 | Item-catalog matching | BACKLOG | - | Backend support for matching captured items against catalog data | 2026-03-08 |
 
@@ -78,7 +78,7 @@ _Last updated: 2026-03-08 (late night run)_
 **Repos:** dd-lingfei/playground
 **Status:** STALE - no open PRs
 
-_No open PRs. Last activity: [#25](https://github.com/dd-lingfei/playground/pull/25) Add backlog BL-13 and BL-14 (MERGED 2026-03-08)_
+_No open PRs. Last activity: [#27](https://github.com/dd-lingfei/playground/pull/27) Update BL-4: connect with production UG endpoint (MERGED today)_
 
 ### Backlog
 _No backlog items_
@@ -100,11 +100,12 @@ _No backlog items_
 ## Action Items
 - **MERGE NOW:** PR [#66194](https://github.com/doordash/ios/pull/66194) (barcode guardrail) is **APPROVED**, all CI passing - ready to merge!
 - **MERGE NOW:** PR [#2039](https://github.com/doordash/tf_account_dash_management/pull/2039) (Vault registration) is **APPROVED**, all CI passing
-- **NEW PR:** [#66259](https://github.com/doordash/ios/pull/66259) (gRPC backend invocation) CI running - needs review when CI completes
-- **NEW PR:** [#105244](https://github.com/doordash/pedregal/pull/105244) (catalog store + S3 cache) all CI passing - needs reviewer (+1481/-43, 12 files)
-- **REQUEST REVIEW:** PR [#105109](https://github.com/doordash/pedregal/pull/105109) async job processor - CI passing, needs reviewer
-- **REQUEST REVIEW:** PR [#105075](https://github.com/doordash/pedregal/pull/105075) graph scaffold - CI passing (aviator pending), needs reviewer (+1389/-0, 26 files)
+- **REQUEST REVIEW:** PR [#66259](https://github.com/doordash/ios/pull/66259) (gRPC backend invocation) - CI now all PASSING, needs code review (+1425/-41, 7 files)
+- **REQUEST REVIEW:** PR [#105244](https://github.com/doordash/pedregal/pull/105244) (catalog store + S3 cache) - CI all green, needs reviewer (+1481/-43, 12 files)
+- **REQUEST REVIEW:** PR [#105109](https://github.com/doordash/pedregal/pull/105109) (async job processor) - CI passing, needs reviewer (+487/-350, 8 files)
+- **REQUEST REVIEW:** PR [#105075](https://github.com/doordash/pedregal/pull/105075) (graph scaffold) - CI passing (aviator pending), needs reviewer (+1389/-0, 26 files)
 - **REQUEST REVIEW:** PRs [#66161](https://github.com/doordash/ios/pull/66161), [#66162](https://github.com/doordash/ios/pull/66162) (ios) - all real CI passing, only pullapprove pending
-- **BACKLOG TRANSITION:** BL-3 moved to IN PROGRESS via ios#66259 (gRPC backend invocation)
-- **BACKLOG TRANSITION:** BL-15 moved to IN PROGRESS via pedregal#105244 (catalog store + S3 cache)
 - Inventory Skills workstream remains STALE (last activity 2026-02-27)
+
+**Changes since last report:**
+- ios#66259 CI completed successfully (was PENDING, now all PASSING)
