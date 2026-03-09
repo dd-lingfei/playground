@@ -10,15 +10,13 @@ Tracks high-level project goals, groups PRs by workstream, and flags stale or bl
 
 ## How to Execute
 
-### Step 1: Load memory
+### Step 1: Load workstream config from JIRA
 
-Read `MEMORY.md` from the repo at `/Users/lingfei.li/AiPlaygroundCode/playground/lingfei-feature-development-report/MEMORY.md`.
-
-This file contains:
-- **Workstreams** - the user's high-level project goals and which repos belong to each
-- **Previous state** - last known PR statuses, action items, and notes
+Fetch the DIGLETT Epic (DIGLETT-1) from JIRA (cloudId: `doordash.atlassian.net`). The Epic's description contains the workstream definitions — each workstream's name, goal, and which repos belong to it.
 
 IMPORTANT: Workstreams are persistent. NEVER remove a workstream even if it has zero open PRs. Only the user can retire a workstream by explicitly asking.
+
+If a new workstream is discovered (a PR doesn't match any existing workstream), present it to the user for confirmation, then add it to the DIGLETT-1 Epic description.
 
 ### Step 2: Identify the GitHub user
 
@@ -55,7 +53,7 @@ For each PR, look at `statusCheckRollup`:
 
 ### Step 7: Classify PRs into workstreams
 
-Using the workstream definitions from MEMORY.md, assign each PR to a workstream based on:
+Using the workstream definitions loaded from JIRA in Step 1, assign each PR to a workstream based on:
 1. The repo it belongs to (primary signal)
 2. The PR title / branch name (secondary signal for repos shared across workstreams)
 
@@ -98,46 +96,10 @@ After all workstreams, show a summary:
 - Bullet list of things needing attention (failing CI, ready to merge, stale workstreams, etc.)
 ```
 
-### Step 9: Update memory and commit
+### Step 9: Save report to JIRA
 
-1. Update `MEMORY.md` at `/Users/lingfei.li/AiPlaygroundCode/playground/lingfei-feature-development-report/MEMORY.md` with:
-   - Updated timestamp
-   - Current workstream definitions (preserving all existing ones)
-   - Current open PR summary per workstream
-   - Action items
-   - Any new workstreams discovered
+Post the full report from Step 8 as a comment on DIGLETT-1 (the Epic) using the `addCommentToJiraIssue` Atlassian MCP tool (cloudId: `doordash.atlassian.net`, issueIdOrKey: `DIGLETT-1`).
 
-2. Update `README.md` at `/Users/lingfei.li/AiPlaygroundCode/playground/lingfei-feature-development-report/README.md` with the full human-readable report. This file should contain the same content presented to the user in Step 8 - the complete rendered report with all workstream sections, PR tables, and action items. A human reader should be able to open this file and immediately understand current PR status across all workstreams.
+The comment body should be the full rendered report — all workstream sections, PR tables, and action items — so it's visible directly on the Epic in JIRA.
 
-   The README.md should follow this structure:
-   ```
-   # Feature Development Report
-   _Last updated: <date and time description>_
-
-   <Full report from Step 8: all workstream sections with Open PRs, Recently Closed/Merged, followed by Action Items>
-   ```
-
-   IMPORTANT: Update README.md whenever MEMORY.md is updated - this includes report runs, workstream changes, or any other memory update. They must always stay in sync.
-
-3. Create a branch, commit, push, and open a PR for the updated files:
-   ```bash
-   cd /Users/lingfei.li/AiPlaygroundCode/playground
-   git checkout -b update-dev-report-<date>
-   git add lingfei-feature-development-report/MEMORY.md lingfei-feature-development-report/README.md
-   git commit -m "Update feature development report - <date>"
-   git push -u origin update-dev-report-<date>
-   ```
-
-   Then create a PR whose body contains the full feature development report (the same content as README.md). Use a HEREDOC to pass the body:
-   ```bash
-   gh pr create --title "Update feature development report - <date>" --body "$(cat <<'EOF'
-   # Feature Development Report - <date>
-
-   <Paste the full report from Step 8 here, including all workstream sections, tables, and action items>
-   EOF
-   )"
-   ```
-
-   IMPORTANT: Always use a branch and PR. Never push directly to main.
-   IMPORTANT: The PR description must contain the full rendered report so the user's PR status is visible directly on the PR.
-   IMPORTANT: Always include both MEMORY.md and README.md in the same commit.
+If any new workstreams were discovered in Step 7, update the DIGLETT-1 Epic description to include the new workstream definition.
