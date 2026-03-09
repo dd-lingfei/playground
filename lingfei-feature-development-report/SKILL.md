@@ -6,7 +6,7 @@ user_invocable: true
 
 # Lingfei Feature Development Report
 
-Tracks high-level project goals, groups PRs by workstream, maintains a feature backlog, and flags stale or blocked work.
+Tracks high-level project goals, groups PRs by workstream, and flags stale or blocked work. Backlog and status tracking is managed in JIRA (DIGLETT project).
 
 ## How to Execute
 
@@ -17,7 +17,6 @@ Read `MEMORY.md` from the repo at `/Users/lingfei.li/AiPlaygroundCode/playground
 This file contains:
 - **Workstreams** - the user's high-level project goals and which repos belong to each
 - **Previous state** - last known PR statuses, action items, and notes
-- **Backlog** - feature ideas organized by workstream with status tracking
 
 IMPORTANT: Workstreams are persistent. NEVER remove a workstream even if it has zero open PRs. Only the user can retire a workstream by explicitly asking.
 
@@ -62,53 +61,6 @@ Using the workstream definitions from MEMORY.md, assign each PR to a workstream 
 
 If a PR doesn't match any existing workstream, auto-infer a new workstream name and add it. Present the new workstream to the user for confirmation.
 
-### Step 7b: Update backlog statuses
-
-The Backlog section in MEMORY.md tracks feature ideas per workstream. Each item has a status lifecycle:
-- `BACKLOG` - idea logged, no PR yet
-- `IN PROGRESS` - an open PR matches this item
-- `DONE` - a merged PR completed this item
-
-During each report run, auto-maintain the backlog:
-1. For each backlog item with status `BACKLOG`, check if any open PR title or branch name matches the feature description. If so, transition to `IN PROGRESS` and link the PR.
-2. For each backlog item with status `IN PROGRESS`, check if the linked PR has been merged. If so, transition to `DONE`.
-3. If an `IN PROGRESS` item's PR was closed without merging, transition back to `BACKLOG` and remove the PR link.
-4. Report any transitions in the Action Items section (e.g. "BL-1 moved to IN PROGRESS via #66163").
-
-IMPORTANT: Matching should be fuzzy - match on keywords from the feature title against PR titles and branch names. When uncertain, flag it for the user to confirm rather than auto-transitioning.
-
-Backlog format in MEMORY.md (under `## Backlog`, with sub-sections per workstream):
-```
-### <Workstream Name>
-| ID | Feature | Status | PR | Notes | Added |
-|----|---------|--------|----|-------|-------|
-| BL-1 | Feature title | BACKLOG/IN PROGRESS/DONE | - or #N | Optional notes | YYYY-MM-DD |
-```
-
-When the user describes a new feature idea outside of a report run:
-1. Classify it into the appropriate workstream
-2. Present it for user confirmation
-3. On confirmation, assign the next available BL-N ID and add it to MEMORY.md
-4. Commit via branch + PR (same workflow as report updates)
-
-### Step 7c: Auto-create backlog items for unlinked open PRs
-
-After updating existing backlog statuses in Step 7b, check for open PRs that have no corresponding backlog item. An open PR is "unlinked" if:
-1. It is NOT already referenced by any backlog item (neither as an IN PROGRESS link nor as a DONE link)
-2. It is NOT a playground report/meta PR (skip PRs in the `dd-lingfei/playground` repo since those are tooling PRs for this report itself)
-
-For each unlinked open PR:
-1. Assign the next available BL-N ID (scan all workstreams for the highest existing ID and increment)
-2. Derive the feature title from the PR title - clean it up to be a concise feature description (e.g. "Add Diglett session management with store ID entry and photo persistence" -> "Session management with store ID entry and photo persistence")
-3. Set status to `IN PROGRESS` and link the PR
-4. Set Notes to a brief description derived from the PR title
-5. Set Added to today's date
-6. Place it under the correct workstream based on the PR's repo (same classification as Step 7)
-
-Report any auto-created backlog items in the Action Items section (e.g. "Auto-created BL-9 for ios#66161 (session management)").
-
-IMPORTANT: This runs automatically during every report run. No user confirmation is needed for auto-created items since the PR already exists as evidence of the work. The user can always rename or reorganize backlog items later.
-
 ### Step 8: Present the report
 
 For each workstream, present in this format:
@@ -128,11 +80,6 @@ For each workstream, present in this format:
 | # | Repo | Title | State | Updated |
 |---|------|-------|-------|---------|
 | [#N](url) | repo | title | MERGED/CLOSED | relative time |
-
-### Backlog
-| ID | Feature | Status | PR | Notes | Added |
-|----|---------|--------|----|-------|-------|
-| BL-N | feature | BACKLOG/IN PROGRESS/DONE | - or [#N](url) | notes | date |
 ```
 
 If a workstream has NO open PRs, still show it with an empty table and mark status as STALE:
@@ -160,17 +107,17 @@ After all workstreams, show a summary:
    - Action items
    - Any new workstreams discovered
 
-2. Update `README.md` at `/Users/lingfei.li/AiPlaygroundCode/playground/lingfei-feature-development-report/README.md` with the full human-readable report. This file should contain the same content presented to the user in Step 8 - the complete rendered report with all workstream sections, PR tables, backlog tables, and action items. A human reader should be able to open this file and immediately understand all project progress and backlog items.
+2. Update `README.md` at `/Users/lingfei.li/AiPlaygroundCode/playground/lingfei-feature-development-report/README.md` with the full human-readable report. This file should contain the same content presented to the user in Step 8 - the complete rendered report with all workstream sections, PR tables, and action items. A human reader should be able to open this file and immediately understand current PR status across all workstreams.
 
    The README.md should follow this structure:
    ```
    # Feature Development Report
    _Last updated: <date and time description>_
 
-   <Full report from Step 8: all workstream sections with Open PRs, Recently Closed/Merged, and Backlog tables, followed by Action Items>
+   <Full report from Step 8: all workstream sections with Open PRs, Recently Closed/Merged, followed by Action Items>
    ```
 
-   IMPORTANT: Update README.md whenever MEMORY.md is updated - this includes report runs, backlog additions, workstream changes, or any other memory update. They must always stay in sync.
+   IMPORTANT: Update README.md whenever MEMORY.md is updated - this includes report runs, workstream changes, or any other memory update. They must always stay in sync.
 
 3. Create a branch, commit, push, and open a PR for the updated files:
    ```bash
