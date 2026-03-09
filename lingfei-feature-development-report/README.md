@@ -29,7 +29,7 @@ _Last updated: 2026-03-08 (late night run)_
 |----|---------|--------|----|-------|-------|
 | BL-1 | Barcode detection for photo quality validation | **IN PROGRESS** | [#66194](https://github.com/doordash/ios/pull/66194) | APPROVED - ready to merge | 2026-03-07 |
 | BL-3 | Trigger backend processing after photo upload + poll for status | **IN PROGRESS** | [#66259](https://github.com/doordash/ios/pull/66259) | Matched via ios#66259 (gRPC backend invocation). CI running. | 2026-03-07 |
-| BL-4 | Use local backend endpoint in simulator | BACKLOG | - | Hit local Diglett backend instead of pedregal endpoint in simulator | 2026-03-07 |
+| BL-4 | Connect with the production UG endpoint for backend processing | BACKLOG | - | Connect iOS app to production Unified Gateway endpoint for backend processing | 2026-03-07 |
 | BL-5 | Delete photos from list view | BACKLOG | - | Allow user to delete individual photos from current session | 2026-03-07 |
 | BL-7 | Detect QR codes in addition to barcodes | BACKLOG | - | Extend barcode guardrail to also detect QR codes | 2026-03-07 |
 | BL-9 | Sequential photo IDs for Diglett captures | **IN PROGRESS** | [#66162](https://github.com/doordash/ios/pull/66162) | Needs code review | 2026-03-07 |
