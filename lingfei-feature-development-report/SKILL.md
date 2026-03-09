@@ -65,7 +65,54 @@ A PR is **unlinked** if it cannot be confidently matched to any JIRA task. Keep 
 
 PRs in the `dd-lingfei/playground` repo are always unlinked (they are tooling/meta PRs for this report itself).
 
-### Step 8: Present the report
+### Step 8: Sync JIRA task statuses
+
+After matching PRs to tasks, update JIRA statuses to reflect current development state. Use `transitionJiraIssue` (cloudId: `doordash.atlassian.net`).
+
+**DIGLETT transition IDs:** `"11"` = To Do, `"21"` = In Progress, `"31"` = Done
+
+**Safety rules:**
+- Never downgrade a task from "Done"
+- Never automatically transition to Done — always ask the user first
+- Skip tasks already in the correct target status
+
+For each JIRA subtask, apply the following rules:
+
+#### Rule A — Open PR found → In Progress
+If a task has a matched open PR (from Step 7) **and** its current status is **"To Do"**:
+→ Immediately transition to **In Progress** (transitionId: `"21"`). No confirmation needed.
+
+#### Rule B — No open PR → check description for PR links
+For tasks with no matched open PR, look for GitHub PR links in the JIRA task description.
+
+**B1 — PR links found in description**: fetch the state of each linked PR in parallel:
+```bash
+gh pr view <number> --repo <owner/repo> --json state,mergedAt
+```
+- If any linked PR is still **OPEN** → treat as Rule A (transition To Do → In Progress if needed)
+- If **all linked PRs are MERGED** → add task to "done candidates" list
+- If all linked PRs are **CLOSED (not merged)** → treat as B2
+
+**B2 — No PR links anywhere** and current status is **"In Progress"**:
+→ Immediately transition to **To Do** (transitionId: `"11"`). No confirmation needed.
+If status is already "To Do" → no change.
+
+#### Rule C — Done candidates → ask user
+After processing all tasks, if any tasks have all linked PRs merged, ask the user in one prompt:
+
+```
+The following tasks have all linked PRs merged. Mark as Done in JIRA?
+- [DIGLETT-X](url): <title>  (merged: PR #N)
+- [DIGLETT-Y](url): <title>  (merged: PR #N, #M)
+
+Reply "yes" to mark all, "no" to skip, or list specific keys (e.g. "DIGLETT-X").
+```
+
+For confirmed tasks, transition to **Done** (transitionId: `"31"`).
+
+---
+
+### Step 9: Present the report
 
 For each workstream that has JIRA tasks, present in this format:
 
@@ -109,9 +156,9 @@ Then show the action items summary:
 - Bullet list of things needing attention (failing CI, ready to merge, blocked tasks, stale workstreams, etc.)
 ```
 
-### Step 9: Save report to JIRA
+### Step 10: Save report to JIRA
 
-Post the full report from Step 8 as a comment on DIGLETT-1 (the Epic) using the `addCommentToJiraIssue` Atlassian MCP tool (cloudId: `doordash.atlassian.net`, issueIdOrKey: `DIGLETT-1`).
+Post the full report from Step 9 as a comment on DIGLETT-1 (the Epic) using the `addCommentToJiraIssue` Atlassian MCP tool (cloudId: `doordash.atlassian.net`, issueIdOrKey: `DIGLETT-1`).
 
 The comment body should be the full rendered report so it's visible directly on the Epic in JIRA.
 
