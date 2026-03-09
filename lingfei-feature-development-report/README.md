@@ -36,6 +36,7 @@ _Last updated: 2026-03-08 (late night run)_
 | BL-10 | Session management with store ID entry and photo persistence | **IN PROGRESS** | [#66161](https://github.com/doordash/ios/pull/66161) | Needs code review | 2026-03-07 |
 | BL-13 | Connect Dasher iOS app to local backend for end-to-end testing | BACKLOG | - | Hit local running Diglett backend instance from the iOS app for E2E testing | 2026-03-08 |
 | BL-14 | Connect iOS app to backend via Unified Gateway (UG) | BACKLOG | - | Route iOS app requests to Diglett backend through UG in non-local environments | 2026-03-08 |
+| BL-18 | Stabilize session and photo ordering in list view | BACKLOG | - | When user clicks "upload for processing", list view reorders sessions/photos. Fix to remain stable. | 2026-03-08 |
 
 ---
 
