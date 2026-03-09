@@ -111,10 +111,8 @@ Then show the action items summary:
 
 ### Step 9: Save report to JIRA
 
-Update the DIGLETT-1 Epic description using the `editJiraIssue` Atlassian MCP tool (cloudId: `doordash.atlassian.net`, issueIdOrKey: `DIGLETT-1`).
+Post the full report from Step 8 as a comment on DIGLETT-1 (the Epic) using the `addCommentToJiraIssue` Atlassian MCP tool (cloudId: `doordash.atlassian.net`, issueIdOrKey: `DIGLETT-1`).
 
-The description should contain two sections in order:
-1. **Workstream config** (preserve as-is from Step 1 — this is what future runs read)
-2. **Latest report** (the full rendered report from Step 8, preceded by a `---` divider and a `_Last updated: <date>_` line)
+The comment body should be the full rendered report so it's visible directly on the Epic in JIRA.
 
-This way the Epic body always shows the current report, and the workstream config remains readable by future skill runs.
+If any new workstreams were discovered in Step 7, update the DIGLETT-1 Epic description to include the new workstream definition.
