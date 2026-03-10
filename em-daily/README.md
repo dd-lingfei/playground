@@ -26,20 +26,78 @@ Generates a synthesized execution health report for all Inventory POD projects a
 | Data / Signals | Just-in-Time Inventory, Zero Ingestion Latency |
 | OE / AI | AI Anomaly Detection, INFP EOL Sunset, Inventory Pod AI Ideas |
 
+---
+
+### `/slack-mention-triage`
+
+Reviews unread Slack messages where the user was mentioned and classifies them by urgency.
+
+**What it does:**
+1. Fetches unread mentions across all Slack channels
+2. Classifies each message into: **Immediate** (respond now) / **Later** (respond today) / **FYI** (no action needed)
+3. Delivers a prioritized triage report
+
+**Invoke with:** `/slack-mention-triage`
+
+---
+
+### `/inventory-telescope`
+
+Macro-level inventory monitoring — detects anomalies at the merchant, store, job, and system level.
+
+**What it does:**
+- Monitors KPIs and detects anomalies at scale across merchants, stores, and jobs
+- Surfaces system health issues and metric regressions
+- NOT for root-causing specific items (use `/inventory-microscope` for that)
+
+**Invoke with:** `/inventory-telescope`
+
+---
+
+### `/inventory-microscope`
+
+Root cause analysis for specific inventory items — traces individual items through the full processing pipeline.
+
+**What it does:**
+- Queries data lakes (QIF, raw/hydrated feeds) for item-level data
+- Cross-references observability logs and Glean for pipeline traces
+- Explains exactly what happened to a specific item and why
+
+**Invoke with:** `/inventory-microscope`
+
+---
+
+### `/lingfei-feature-development-report`
+
+Tracks feature development progress across repos for the current project.
+
+**What it does:**
+- Shows PRs, branches, and CI status organized by workstream
+- Surfaces action items and blocked work
+- Gives a snapshot of in-flight development across all active feature branches
+
+**Invoke with:** `/lingfei-feature-development-report`
+
+---
+
 ## Repo structure
 
 ```
 em-daily/
 ├── skills/
-│   └── inventory-pod-status/
-│       ├── SKILL.md     # Skill instructions for Claude
-│       └── MEMORY.md    # Doc IDs, channel IDs, project mappings
+│   ├── inventory-pod-status/
+│   │   ├── SKILL.md     # Skill instructions for Claude
+│   │   └── MEMORY.md    # Doc IDs, channel IDs, project mappings
+│   └── slack-mention-triage/
+│       └── SKILL.md
 └── docs/
     └── superpowers/
         ├── specs/       # Design specs for skills
         └── plans/       # Implementation plans
 ```
 
+Skills under `skills/` are the canonical source. `~/.claude/skills/` contains pointer files that redirect Claude to the canonical location, so slash commands work from any directory.
+
 ## Setup
 
-Skills in `skills/` are symlinked or copied to `~/.claude/skills/` to be available in Claude Code sessions. See the design spec in `docs/superpowers/specs/` for full details on each skill's data sources and behavior.
+Copy or symlink each skill directory from `skills/` to `~/.claude/skills/`. The pointer pattern means edits to the canonical files are picked up immediately without re-copying.
