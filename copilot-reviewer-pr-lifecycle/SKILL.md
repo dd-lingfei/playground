@@ -6,7 +6,7 @@ user_invocable: true
 
 # Copilot Reviewer PR Lifecycle
 
-Automates the Copilot code review loop: request review, wait for comments, fix critical ones (bugs), dismiss minor ones, push, re-request, repeat until Copilot is satisfied.
+Automates the Copilot code review loop: request review, wait for comments, fix critical ones (bugs), dismiss minor ones, push, re-request, repeat up to 3 rounds.
 
 ## How to Execute
 
@@ -55,8 +55,11 @@ Set up a CronCreate job that polls every 30 seconds for Copilot's review:
 >
 > If the result is empty or null, Copilot hasn't reviewed yet. Do nothing — wait for the next poll.
 >
+> This is round <ROUND> of a maximum of 3 rounds.
+>
 > If a review exists, check its state:
 > - If `state` is `APPROVED` or the body indicates no issues found: delete this cron job, and tell the user "Copilot approved the PR with no comments."
+> - If this is round 3 (final round): delete this cron job. Do NOT fix or re-request. Tell the user "Max rounds (3) reached. Remaining comments require manual review." and present the completion summary.
 > - If `state` is `COMMENTED` or `CHANGES_REQUESTED`: proceed to fetch and fix comments. Delete this cron job first, then follow Steps 5-8 below.
 >
 > **Step 5: Fetch Copilot comments**
@@ -111,9 +114,9 @@ Set up a CronCreate job that polls every 30 seconds for Copilot's review:
 >
 > **Step 8: Resume polling**
 >
-> Set up a new CronCreate job with the same poll prompt to wait for Copilot's next review. This continues the loop.
+> Increment the round counter. Set up a new CronCreate job with the same poll prompt (with updated round number) to wait for Copilot's next review. This continues the loop.
 
-IMPORTANT: The poll prompt must be self-contained — it includes Steps 5-8 so the cron-triggered execution has all the instructions it needs to complete the full cycle.
+IMPORTANT: The poll prompt must be self-contained — it includes Steps 5-8 and the current round number so the cron-triggered execution has all the instructions it needs to complete the full cycle.
 
 ### Error handling
 
@@ -125,6 +128,7 @@ IMPORTANT: The poll prompt must be self-contained — it includes Steps 5-8 so t
 
 The skill completes when:
 - Copilot approves or leaves no actionable comments
+- Maximum of 3 rounds reached (tell the user remaining comments need manual review)
 - The gh API returns an error that prevents further progress (tell the user)
 
 On completion, delete any active cron jobs and present a summary:
