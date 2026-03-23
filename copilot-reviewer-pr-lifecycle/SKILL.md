@@ -6,7 +6,7 @@ user_invocable: true
 
 # Copilot Reviewer PR Lifecycle
 
-Automates the Copilot code review loop: request review, wait for comments, fix them, push, re-request, repeat until Copilot is satisfied.
+Automates the Copilot code review loop: request review, wait for comments, fix critical ones (bugs), dismiss minor ones, push, re-request, repeat until Copilot is satisfied.
 
 ## How to Execute
 
@@ -71,13 +71,27 @@ Set up a CronCreate job that polls every 30 seconds for Copilot's review:
 >
 > If there are no actionable comments (only praise or informational notes), delete the cron job and tell the user "Copilot review complete — no actionable comments."
 >
-> **Step 6: Fix each comment**
+> **Step 6: Triage and fix comments**
 >
-> For each Copilot comment:
+> For each Copilot comment, first classify it:
+>
+> **Critical (fix these):** Bugs, logic errors, security vulnerabilities, null/undefined access, race conditions, resource leaks, incorrect behavior, missing error handling that would cause crashes.
+>
+> **Minor (dismiss these):** Code style suggestions, naming conventions, refactoring proposals, performance micro-optimizations, documentation improvements, alternative approaches that aren't buggy.
+>
+> For each **critical** comment:
 > 1. Read the file at the specified `path`
 > 2. Understand the comment in context of the `diff_hunk`
 > 3. Make the fix using the Edit tool
-> 4. If a comment is unclear or not actionable (e.g., a question rather than a suggestion), skip it and note it in the summary
+>
+> For each **minor** comment:
+> 1. Reply to the comment on the PR with: "Minor comments are ignored by Claude Code rule"
+>    ```bash
+>    gh api repos/<OWNER>/<REPO>/pulls/<NUMBER>/comments/<COMMENT_ID>/replies -f body="Minor comments are ignored by Claude Code rule"
+>    ```
+> 2. Do NOT make any code changes for this comment
+>
+> If a comment is unclear or not actionable (e.g., a question rather than a suggestion), skip it and note it in the summary.
 >
 > **Step 7: Commit, push, and re-request review**
 >
@@ -119,7 +133,8 @@ On completion, delete any active cron jobs and present a summary:
 
 PR: #<NUMBER> (<URL>)
 Rounds: <N>
-Comments addressed: <M>
+Critical comments fixed: <M>
+Minor comments dismissed: <J>
 Skipped: <K> (with reasons)
 Status: Approved / No more comments / Error
 ```
