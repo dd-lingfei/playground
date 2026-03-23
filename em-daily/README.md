@@ -67,16 +67,17 @@ Root cause analysis for specific inventory items — traces individual items thr
 
 ---
 
-### `/lingfei-feature-development-report`
+### `/development-report`
 
-Tracks feature development progress across repos for the current project.
+Maintains a running changelog of completed development work.
 
 **What it does:**
-- Shows PRs, branches, and CI status organized by workstream
-- Surfaces action items and blocked work
-- Gives a snapshot of in-flight development across all active feature branches
+- Fetches merged PRs from GitHub for dd-lingfei
+- Tracks JIRA task completions (DIGLETT project)
+- Accepts manual entries (meetings, design reviews, docs)
+- Appends new entries to a persistent date-grouped log
 
-**Invoke with:** `/lingfei-feature-development-report`
+**Invoke with:** `/development-report`
 
 ---
 
