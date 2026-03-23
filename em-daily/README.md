@@ -81,6 +81,21 @@ Maintains a running changelog of completed development work.
 
 ---
 
+### `/copilot-reviewer-pr-lifecycle`
+
+Automates the GitHub Copilot code review loop on a PR.
+
+**What it does:**
+- Detects the PR for the current branch
+- Requests Copilot review if not already requested
+- Polls every 30 seconds for Copilot's review comments
+- Auto-fixes all actionable comments, commits, pushes, and re-requests review
+- Repeats until Copilot approves or has no more comments
+
+**Invoke with:** `/copilot-reviewer-pr-lifecycle`
+
+---
+
 ## Repo structure
 
 ```
